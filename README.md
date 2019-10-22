@@ -1,4 +1,4 @@
-# ASDM  CLI Utility for Cisco ASA's
+## ASDM cli utility for Cisco ASA's
 
 This is a cli asdm launcher I wrote. It will automatically add the ASA to the java exceptions list.
 
@@ -7,13 +7,13 @@ Must have Oracle Java installed. Please visit [here](https://java.com/en/downloa
 
 ## Installation
 ```shell
-git clone git@github.com:rwendt-bw/asdm.git
+git clone git@github.com:rwendt-bw/asdm.git ~/asdm
 ```
 
-### sym link executable
+Next, symlink the executable.
 
-```
-sudo ln -s ~/git/asdm/asdm.py /usr/local/bin/asdm
+```shell
+sudo ln -s ~/asdm/asdm.py /usr/local/bin/asdm
 ```
 
 ## Usage
