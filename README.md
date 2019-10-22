@@ -1,2 +1,28 @@
-# asdm
-Command line option for Cisco ASDM
+# ASDM  CLI Utility for Cisco ASA's
+
+
+## Installation
+```shell
+git clone git@github.com:rwendt-bw/asdm.git
+```
+
+### sym link executable
+
+```
+sudo ln -s ~/git/asdm/asdm.py /usr/local/bin/asdm
+```
+
+## Usage
+```
+usage: asdm [-h] -i IP [-p PORT]
+
+optional arguments:
+  -h, --help              show this help message and exit
+  -i IP, --ip-address IP  hostname or IP address of ASA
+  -p PORT, --port PORT    asdm port - default 8443
+```
+
+## Example run
+```shell
+asdm -i 192.168.1.1
+```
