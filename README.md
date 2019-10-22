@@ -1,5 +1,9 @@
 # ASDM  CLI Utility for Cisco ASA's
 
+This is a cli asdm launcher I wrote. It will automatically add the ASA to the java exceptions list.
+
+## Prerequisites
+Must have Oracle Java installed. Please visit [here](https://java.com/en/download/help/linux_x64_install.xml) for more information.
 
 ## Installation
 ```shell
