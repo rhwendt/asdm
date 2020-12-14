@@ -2,25 +2,26 @@
 import argparse
 import shlex as s
 import re
-import os
+import platform
 from subprocess import call
+from pathlib import Path
 
 def connect_asdm(ip, port):
-    exceptions_path =  '~/.java/deployment/security/exception.sites'
+    os_name = platform.system()
+    exceptions_file = 'exception.sites'
+    if os_name == 'Darwin':
+        exceptions_path = Path(str(Path.home()) + '/Library/Application Support/Oracle/Java/Deployment/security/')
+    else:
+        exceptions_path =  Path(str(Path.home()) + '/.java/deployment/security/')
+
     p = '(?:http.*://)?(?P<host>[^:/ ]+).?(?P<port>[0-9]*).*'
 
-    exception_hosts = {}
-    if not os.path.exists(os.path.expanduser(exceptions_path)):
-        try:
-            os.makedirs(os.path.dirname(os.path.expanduser(exceptions_path)))
-        except OSError as exc:
-            if exc.errno != errno.EEXIST:
-                raise
-        f = open(os.path.expanduser(exceptions_path), 'w')
-        f.write()
-        f.close()
+    exceptions_path.mkdir(parents=True, exist_ok=True)
 
-    with open(os.path.expanduser(exceptions_path), 'r') as file:
+    exception_hosts = {}
+
+    exceptions_file = str(exceptions_path.resolve()) + "/" + exceptions_file
+    with open(exceptions_file, 'a+') as file:
         for line in file:
             match = re.search(p, line)
             ehost = match.group('host').strip()
@@ -42,7 +43,7 @@ def connect_asdm(ip, port):
         else:
             file_contents += 'https://' + host + ':' +  exception_hosts[host] + '\n'
 
-    f = open(os.path.expanduser(exceptions_path), 'w')
+    f = open(exceptions_file, 'w')
     f.write(file_contents)
     f.close()
 
